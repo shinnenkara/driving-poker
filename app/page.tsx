@@ -1,29 +1,49 @@
-import { Button } from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import {Play, Spade} from "lucide-react";
+import Image from "next/image";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <div>
-          <Button asChild>
+      <main className="flex flex-col gap-[32px] row-start-2 items-center text-center max-w-2xl">
+        <h1 className="text-4xl font-bold tracking-tight">Driving Poker</h1>
+        <p className="text-lg text-muted-foreground">
+          Revolutionizing how you learn to drive.
+        </p>
+        <p className="text-lg text-muted-foreground">
+          Turn boring theory into an engaging game that sticks.
+        </p>
+        <p className="text-lg text-muted-foreground">
+          Master road rules effortlessly through card-based learning system.
+        </p>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <Button asChild variant="default">
             <Link
-              className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-              href={"/cards"}
+              className="rounded-full flex items-center gap-2"
+              href="/cards"
             >
-              Cards
+              <Spade size={18} /> Learn Cards
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link
+              className="rounded-full flex items-center gap-2"
+              href="/test"
+            >
+              <Play size={18} /> Practice Tests
             </Link>
           </Button>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <Button asChild>
+        <Button asChild variant="secondary" size="sm">
           <Link
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href={"https://github.com/shinnenkara"}
-            target={"_blank"}
+            className="rounded-full flex items-center gap-2"
+            href="https://github.com/shinnenkara/driving-poker"
+            target="_blank"
           >
-            GitHub
+            <Image src="/github.svg" alt="GitHub" width={16} height={16} /> GitHub
           </Link>
         </Button>
       </footer>
