@@ -1,41 +1,32 @@
 'use client'
 
+import {cn} from '@/lib/utils'
+import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from '@/components/ui/card'
+import {GoogleForm} from "@/components/ui/auth/google/google-form";
+import {LoginForm} from "@/components/ui/auth/login-form";
 import Link from "next/link";
-import {Spade} from "lucide-react";
-import {Auth} from "@supabase/auth-ui-react";
-import {createClient} from "@/lib/supabase/client";
-import {ThemeSupa} from "@supabase/auth-ui-shared";
 
-export default function AuthForm() {
-    const supabase = createClient()
-
+export function AuthForm({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
     return (
-        <div className="min-h-screen w-full flex items-center justify-center">
-            <div className="w-full max-w-md p-8 rounded-3xl shadow-xl">
-                <Link href={"/"}>
-                    <div className="flex items-center justify-center mb-8">
-                        {/*<Activity className="h-12 w-12" />*/}
-                        <Spade className="h-12 w-12" size={18} />
-                        <h1 className="text-3xl font-bold ml-3">Driving Poker</h1>
+        <div className={cn('flex flex-col gap-6', className)} {...props}>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-2xl">Welcome!</CardTitle>
+                    <CardDescription>Sign in to your account to continue</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex flex-col gap-6">
+                        <GoogleForm />
+                        <LoginForm />
+                        <div className="text-center text-sm">
+                            Don&apos;t have an account?{' '}
+                            <Link href="/auth/sign-up" className="underline underline-offset-4">
+                                Sign up
+                            </Link>
+                        </div>
                     </div>
-                </Link>
-                {/*<GoogleOneTap />*/}
-                <Auth
-                    providers={['google']}
-                    // view={view as any}
-                    supabaseClient={supabase}
-                    appearance={{ theme: ThemeSupa }}
-                />
-            </div>
+                </CardContent>
+            </Card>
         </div>
     )
 }
-
-
-// const GoogleOneTap = dynamic(
-//     () => import("../../components/ui/google/one-tap"),
-//     {
-//         loading: () => <p>Loading...</p>,
-//         ssr: false,
-//     },
-// );
