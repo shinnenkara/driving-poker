@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import {UnderDevelopment} from "@/components/ui/custom/under-development";
-import {BackToHome} from "@/components/ui/custom/back-to-home";
+import {UnderDevelopment} from "@/components/ui/general/under-development";
+import {BackToHome} from "@/components/ui/general/back-to-home";
 
 export default function TestPage() {
   return (

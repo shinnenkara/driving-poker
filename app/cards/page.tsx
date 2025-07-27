@@ -1,5 +1,6 @@
-import {BackToHome} from "@/components/ui/custom/back-to-home";
-import {UnderDevelopment} from "@/components/ui/custom/under-development";
+import {BackToHome} from "@/components/ui/general/back-to-home";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 export default function CardsPage() {
     return (
@@ -8,10 +9,12 @@ export default function CardsPage() {
                 <h1 className="text-3xl font-bold tracking-tight">Learn Cards</h1>
                 <p className="text-lg text-muted-foreground">
                     Improve your knowledge of driving theory with interactive cards.
-                    Coming soon!
                 </p>
-
-                <UnderDevelopment />
+                <Button asChild variant="default">
+                    <Link href="/cards/learn" className="rounded-full">
+                        Learn
+                    </Link>
+                </Button>
                 <BackToHome />
             </div>
         </div>
