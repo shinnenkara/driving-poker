@@ -1,4 +1,4 @@
-import {CardView} from "@/components/ui/cards/card.view";
+import {CardView} from "@/components/ui/cards/card-view";
 
 export default function CardsLearnPage() {
     return (
