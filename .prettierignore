@@ -1,0 +1,17 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all HTML files:
+**/*.html
+
+# Ignore Vercel specifics
+.next
+.vercel
+
+# Ignore IDEA specifics
+.idea
+
+# Ignore if not default
+package-lock.json
+node_modules
