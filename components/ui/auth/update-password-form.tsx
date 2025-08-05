@@ -13,13 +13,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
 import { updatePassword } from "@/lib/auth/update-password";
-import { useSearchParams } from "next/navigation";
 
 export function UpdatePasswordForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const searchParams = useSearchParams();
   const [state, action, pending] = useActionState(updatePassword, {});
 
   return (
