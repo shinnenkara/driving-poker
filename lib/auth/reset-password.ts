@@ -14,7 +14,7 @@ export const resetPassword = async (
 
   const email = formData.get("email") as string;
   const redirectLocation = formData.get("redirectLocation") as string;
-  if (!redirectLocation) {
+  if (!redirectLocation || !email) {
     response.error = "An error occurred";
     return response;
   }

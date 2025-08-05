@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useActionState } from "react";
 import { resetPassword } from "@/lib/auth/reset-password";
+import { useSearchParams } from "next/navigation";
 
 function PasswordResetSentForm() {
   return (

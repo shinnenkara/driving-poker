@@ -1,7 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 import { supabaseKey, supabaseUrl } from "@/lib/supabase/env";
-import { userRedirects } from "@/lib/auth/user-redirects";
+import { userRedirectUrl } from "@/lib/supabase/user-redirect-url";
+import { CodeSession } from "@/lib/supabase/code-session";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -27,14 +28,15 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  // Do not run code between createServerClient and user.Redirects()
-  // A simple mistake could make it very hard to debug issues with users being randomly logged out.
+  const codeSession = new CodeSession(request, supabase);
+  const codeRedirectUrl = await codeSession.createOrRedirect();
+  if (codeRedirectUrl) {
+    return NextResponse.redirect(codeRedirectUrl);
+  }
 
-  // IMPORTANT: DO NOT REMOVE user.Redirects()
-
-  const redirect = await userRedirects(request, supabase);
-  if (redirect) {
-    return redirect;
+  const redirectUrl = await userRedirectUrl(request, supabase);
+  if (redirectUrl) {
+    return NextResponse.redirect(redirectUrl);
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
