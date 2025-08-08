@@ -24,7 +24,7 @@ export async function googleAuth(
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${redirectLocation}/auth/oauth?next=/profile`,
+        redirectTo: `${redirectLocation}/auth/callback?next=/profile`,
       },
     });
     if (error) {

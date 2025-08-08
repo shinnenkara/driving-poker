@@ -2,7 +2,6 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 import { supabaseKey, supabaseUrl } from "@/lib/supabase/env";
 import { userRedirectUrl } from "@/lib/supabase/user-redirect-url";
-import { CodeSession } from "@/lib/supabase/code-session";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -27,12 +26,6 @@ export async function updateSession(request: NextRequest) {
       },
     },
   });
-
-  const codeSession = new CodeSession(request, supabase);
-  const codeRedirectUrl = await codeSession.createOrRedirect();
-  if (codeRedirectUrl) {
-    return NextResponse.redirect(codeRedirectUrl);
-  }
 
   const redirectUrl = await userRedirectUrl(request, supabase);
   if (redirectUrl) {
